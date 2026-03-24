@@ -8,7 +8,7 @@ export default function MentionsPage() {
   return (
     <div className="max-w-4xl mx-auto px-6 py-10">
       <h1 className="text-3xl font-bold text-gray-900 mb-2">Mentions Légales</h1>
-      <div className="w-16 h-0.5 bg-[#2563eb] mb-10" />
+      <div className="w-16 h-1 bg-[#2563eb] mb-10" />
 
       <section className="mb-8">
         <h2 className="text-lg font-semibold text-[#2563eb] mb-4">Éditeur du site</h2>

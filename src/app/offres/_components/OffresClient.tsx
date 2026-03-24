@@ -35,7 +35,7 @@ export default function OffresClient({ jobs, tags }: OffresClientProps) {
           {filtered.length} offre{filtered.length > 1 ? "s" : ""}
         </span>
       </div>
-      <div className="w-16 h-0.5 bg-[#2563eb] mb-6" />
+      <div className="w-16 h-1 bg-[#2563eb] mb-6" />
 
       {tags.length > 0 && (
         <div className="flex flex-wrap gap-2 mb-6">

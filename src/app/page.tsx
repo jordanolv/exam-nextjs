@@ -22,7 +22,7 @@ export default async function HomePage() {
         <h1 className="text-2xl font-bold text-gray-900 mb-2">
           Nos dernières opportunités
         </h1>
-        <div className="w-16 h-0.5 bg-[#2563eb] mb-8" />
+        <div className="w-16 h-1 bg-[#2563eb] mb-8" />
 
         {jobs.length === 0 ? (
           <p className="text-gray-500">Aucune offre disponible pour le moment.</p>

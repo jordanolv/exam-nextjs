@@ -56,7 +56,7 @@ export default async function JobPage({ params }: JobPageProps) {
         <h1 className="text-3xl font-bold text-gray-900">{job.title}</h1>
         <PinButton job={{ uid: job.uid, title: job.title, technologies: job.technologies, pinnedAt: "" }} />
       </div>
-      <div className="w-16 h-0.5 bg-[#2563eb] mb-6" />
+      <div className="w-16 h-1 bg-[#2563eb] mb-6" />
 
       {job.technologies.length > 0 && (
         <div className="flex flex-wrap gap-2 mb-8">

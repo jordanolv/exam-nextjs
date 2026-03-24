@@ -34,7 +34,7 @@ export default function ProfilClient() {
   return (
     <div className="max-w-6xl mx-auto px-6 py-10">
       <h1 className="text-3xl font-bold text-gray-900 mb-2">Bienvenue</h1>
-      <div className="w-16 h-0.5 bg-[#2563eb] mb-10" />
+      <div className="w-16 h-1 bg-[#2563eb] mb-10" />
 
       <section className="mb-12">
         <h2 className="text-xl font-semibold text-[#2563eb] mb-6">
