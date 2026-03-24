@@ -1,7 +1,8 @@
 import * as prismic from "@prismicio/client";
 import type { Job, JobDocument } from "@/types/job";
+import sm from "../../slicemachine.config.json";
 
-const repositoryName = process.env.PRISMIC_REPOSITORY_NAME!;
+const repositoryName = process.env.PRISMIC_REPOSITORY_NAME || sm.repositoryName;
 const accessToken = process.env.PRISMIC_ACCESS_TOKEN;
 
 export const prismicClient = prismic.createClient(repositoryName, {
