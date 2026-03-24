@@ -84,8 +84,7 @@ export default function ProfilClient() {
           <div className="flex flex-col gap-0">
             {candidatures.map((c, i) => (
               <div key={i} className="py-6 border-b border-[#2563eb]">
-                <p className="text-[#2563eb] font-semibold mb-1">❖ candidature</p>
-                <div className="flex items-center gap-1 text-xs text-[#2563eb] mb-2">
+<div className="flex items-center gap-1 text-xs text-[#2563eb] mb-2">
                   <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                     <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
                     <line x1="16" y1="2" x2="16" y2="6" />
