@@ -40,7 +40,7 @@ export default function CandidatureForm({ jobUid, jobTitle, adminEmails }: Candi
         placeholder="Postuler à cette offre ..."
         rows={5}
         required
-        className="w-full border border-[#2563eb] rounded p-3 text-sm resize-none focus:outline-none focus:ring-1 focus:ring-[#2563eb]"
+        className="w-full bg-white border border-[#2563eb] rounded p-3 text-sm resize-none focus:outline-none focus:ring-1 focus:ring-[#2563eb]"
       />
       <div className="flex justify-end">
         <button
