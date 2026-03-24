@@ -1,7 +1,12 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import type { Metadata } from "next";
-import { getJobBySlug } from "@/libs/prismic";
+import { getJobBySlug, getAllJobs } from "@/libs/prismic";
+
+export async function generateStaticParams() {
+  const { jobs } = await getAllJobs({ pageSize: 100 });
+  return jobs.map((job) => ({ slug: job.uid }));
+}
 import CandidatureForm from "@/components/forms/CandidatureForm/CandidatureForm";
 import PinButton from "@/components/ui/PinButton/PinButton";
 
