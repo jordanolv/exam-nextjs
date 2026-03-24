@@ -13,21 +13,30 @@ type CandidatureFormProps = {
 
 export default function CandidatureForm({ jobUid, jobTitle, adminEmails }: CandidatureFormProps) {
   const [sent, setSent] = useState(false);
+  const [submittedMessage, setSubmittedMessage] = useState("");
   const addCandidature = useProfilStore((state) => state.addCandidature);
 
   async function handleAction(formData: FormData) {
     await sendCandidatureEmail(formData);
+    setSubmittedMessage(formData.get("message")?.toString() ?? "");
     addCandidature({ uid: jobUid, title: jobTitle, sentAt: new Date().toISOString() });
     setSent(true);
   }
 
   if (sent) {
     return (
-      <p className="text-[#2563eb] font-medium text-lg leading-snug">
-        Merci d&apos;avoir postulé à cette offre,
-        <br />
-        nous reviendrons vers vous très prochainement !
-      </p>
+      <div className="flex flex-col gap-4">
+        <p className="text-[#2563eb] font-medium text-lg leading-snug">
+          Merci d&apos;avoir postulé à cette offre,
+          <br />
+          nous reviendrons vers vous très prochainement !
+        </p>
+        <div className="bg-gray-50 border border-gray-200 rounded p-4 text-xs text-gray-600 font-mono space-y-1">
+          <p><span className="text-gray-400">offre :</span> {jobTitle}</p>
+          <p><span className="text-gray-400">destinataires :</span> {adminEmails.join(", ")}</p>
+          <p><span className="text-gray-400">message :</span> {submittedMessage}</p>
+        </div>
+      </div>
     );
   }
 
