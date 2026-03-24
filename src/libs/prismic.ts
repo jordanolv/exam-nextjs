@@ -3,11 +3,12 @@ import type { Job, JobDocument } from "@/types/job";
 import sm from "../../slicemachine.config.json";
 
 const repositoryName = process.env.PRISMIC_REPOSITORY_NAME || sm.repositoryName;
-const accessToken = process.env.PRISMIC_ACCESS_TOKEN;
 
-export const prismicClient = prismic.createClient(repositoryName, {
-  accessToken,
-});
+function createClient() {
+  return prismic.createClient(repositoryName, {
+    accessToken: process.env.PRISMIC_ACCESS_TOKEN,
+  });
+}
 
 function documentToJob(doc: JobDocument): Job {
   return {
@@ -40,7 +41,7 @@ export async function getAllJobs(options?: {
     );
   }
 
-  const response = await prismicClient.get({
+  const response = await createClient().get({
     filters,
     orderings: [
       { field: "my.job.publication_date", direction: "desc" },
@@ -57,7 +58,7 @@ export async function getAllJobs(options?: {
 }
 
 export async function getLatestJobs(limit: number = 6): Promise<Job[]> {
-  const response = await prismicClient.get({
+  const response = await createClient().get({
     filters: [prismic.filter.at("document.type", "job")],
     orderings: [
       { field: "my.job.publication_date", direction: "desc" },
@@ -71,7 +72,7 @@ export async function getLatestJobs(limit: number = 6): Promise<Job[]> {
 
 export async function getJobBySlug(slug: string): Promise<Job | null> {
   try {
-    const doc = await prismicClient.getByUID("job", slug);
+    const doc = await createClient().getByUID("job", slug);
     return documentToJob(doc as JobDocument);
   } catch {
     return null;
@@ -81,7 +82,7 @@ export async function getJobBySlug(slug: string): Promise<Job | null> {
 export async function getJobsByUids(uids: string[]): Promise<Job[]> {
   if (uids.length === 0) return [];
 
-  const response = await prismicClient.get({
+  const response = await createClient().get({
     filters: [
       prismic.filter.at("document.type", "job"),
       prismic.filter.in("my.job.uid", uids),
@@ -92,7 +93,7 @@ export async function getJobsByUids(uids: string[]): Promise<Job[]> {
 }
 
 export async function getAllTags(): Promise<string[]> {
-  const response = await prismicClient.get({
+  const response = await createClient().get({
     filters: [prismic.filter.at("document.type", "job")],
     pageSize: 100,
   });
