@@ -27,5 +27,7 @@ export type PinnedJob = {
 export type CandidatureRecord = {
   uid: string;
   title: string;
+  technologies: string[];
+  description: string;
   sentAt: string;
 };

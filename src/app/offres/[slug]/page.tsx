@@ -84,6 +84,8 @@ export default async function JobPage({ params }: JobPageProps) {
         <CandidatureForm
           jobUid={job.uid}
           jobTitle={job.title}
+          jobTechnologies={job.technologies}
+          jobDescription={Array.isArray(job.description) ? (job.description[0] as { text?: string })?.text ?? "" : String(job.description)}
           adminEmails={job.adminEmails}
         />
       </div>

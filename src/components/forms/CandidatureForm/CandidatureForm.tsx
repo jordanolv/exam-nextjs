@@ -8,10 +8,12 @@ import { sendCandidatureEmail } from "@/app/actions/sendEmail";
 type CandidatureFormProps = {
   jobUid: string;
   jobTitle: string;
+  jobTechnologies: string[];
+  jobDescription: string;
   adminEmails: string[];
 };
 
-export default function CandidatureForm({ jobUid, jobTitle, adminEmails }: CandidatureFormProps) {
+export default function CandidatureForm({ jobUid, jobTitle, jobTechnologies, jobDescription, adminEmails }: CandidatureFormProps) {
   const [sent, setSent] = useState(false);
   const [submittedMessage, setSubmittedMessage] = useState("");
   const addCandidature = useProfilStore((state) => state.addCandidature);
@@ -19,7 +21,7 @@ export default function CandidatureForm({ jobUid, jobTitle, adminEmails }: Candi
   async function handleAction(formData: FormData) {
     await sendCandidatureEmail(formData);
     setSubmittedMessage(formData.get("message")?.toString() ?? "");
-    addCandidature({ uid: jobUid, title: jobTitle, sentAt: new Date().toISOString() });
+    addCandidature({ uid: jobUid, title: jobTitle, technologies: jobTechnologies, description: jobDescription, sentAt: new Date().toISOString() });
     setSent(true);
   }
 
