@@ -29,6 +29,14 @@ export default function OffresClient({ jobs, tags }: OffresClientProps) {
 
   return (
     <>
+      <div className="flex items-center justify-between mb-2">
+        <h1 className="text-3xl font-bold text-gray-900">Offres d&apos;emploi</h1>
+        <span className="text-[#2563eb] text-sm font-medium">
+          {filtered.length} offre{filtered.length > 1 ? "s" : ""}
+        </span>
+      </div>
+      <div className="w-16 h-0.5 bg-[#2563eb] mb-6" />
+
       {tags.length > 0 && (
         <div className="flex flex-wrap gap-2 mb-6">
           {tags.map((tag) => (
@@ -47,11 +55,7 @@ export default function OffresClient({ jobs, tags }: OffresClientProps) {
         </div>
       )}
 
-      <p className="text-[#2563eb] text-sm font-medium mb-6">
-        {filtered.length} offre{filtered.length > 1 ? "s" : ""}
-      </p>
-
-      {filtered.length === 0 ? (
+{filtered.length === 0 ? (
         <p className="text-gray-500">Aucune offre pour cette recherche.</p>
       ) : (
         <>

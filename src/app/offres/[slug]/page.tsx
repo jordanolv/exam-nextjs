@@ -3,6 +3,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { getJobBySlug } from "@/libs/prismic";
 import CandidatureForm from "@/components/forms/CandidatureForm/CandidatureForm";
+import PinButton from "@/components/ui/PinButton/PinButton";
 
 type JobPageProps = {
   params: Promise<{ slug: string }>;
@@ -46,7 +47,10 @@ export default async function JobPage({ params }: JobPageProps) {
         </div>
       )}
 
-      <h1 className="text-3xl font-bold text-gray-900 mb-4">{job.title}</h1>
+      <div className="flex items-start justify-between gap-4 mb-4">
+        <h1 className="text-3xl font-bold text-gray-900">{job.title}</h1>
+        <PinButton job={{ uid: job.uid, title: job.title, technologies: job.technologies, pinnedAt: "" }} />
+      </div>
       <div className="w-16 h-0.5 bg-[#2563eb] mb-6" />
 
       {job.technologies.length > 0 && (
